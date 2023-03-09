@@ -2,11 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/abstract-factory-method/index.html",
+      "/posts/builder/index.html",
       "/posts/factory-method/index.html",
       "/posts/singleton/index.html",
-      "/posts/builder/index.html",
-      "/posts/template/index.html"
+      "/posts/abstract-factory-method/index.html"
     ]
   }
 ]
