@@ -1,0 +1,23 @@
+---
+title: "TEMPLATE"
+author: "Neil Shephard"
+date: "2023-03-06"
+categories: [python, TEMPLATE]
+# image:
+from: markdown+emoji
+toc: true
+toc-depth: 3
+toc-location: right
+execute:
+  code_fold: true
+  code_link: true
+  code_tools: true
+  fig-cap-location: top
+  tbl-cap-location: top
+  warning: false
+---
+
+
+# Links
+
+* [TEMPLATE - Refactoring Guru](https://refactoring.guru/design-patterns/)
