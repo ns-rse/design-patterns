@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "posts/abstract-factory-method/index.html",
+    "href": "posts/abstract-factory-method/index.html",
+    "title": "Abstract Factory",
+    "section": "",
+    "text": "Abstract Factory - Refactoring Guru"
+  },
+  {
+    "objectID": "posts/factory-method/index.html",
+    "href": "posts/factory-method/index.html",
+    "title": "Factory Method",
+    "section": "",
+    "text": "Factory Method - Refactoring Guru\nThe Factory Method Pattern and Its Implementation in Python – Real Python"
+  },
+  {
+    "objectID": "posts/singleton/index.html",
+    "href": "posts/singleton/index.html",
+    "title": "Singleton",
+    "section": "",
+    "text": "Singleton - Refactoring Guru"
+  },
+  {
+    "objectID": "posts/builder/index.html",
+    "href": "posts/builder/index.html",
+    "title": "Builder",
+    "section": "",
+    "text": "Builder - Refactoring Guru"
+  },
+  {
+    "objectID": "posts/template/index.html",
+    "href": "posts/template/index.html",
+    "title": "TEMPLATE",
+    "section": "",
+    "text": "TEMPLATE - Refactoring Guru"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This is a blog about software design patterns"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Software Design Patterns",
+    "section": "",
+    "text": "python\n\n\nabstract factory\n\n\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\npython\n\n\nfactory method\n\n\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\npython\n\n\nsingleton\n\n\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\npython\n\n\nbuilder\n\n\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npython\n\n\nTEMPLATE\n\n\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "links.html",
+    "href": "links.html",
+    "title": "Links",
+    "section": "",
+    "text": "None of this is original, its my rehashing of others insights to help me understand how they work and when they are useful. In addition there are a bunch of links to my other web-sites."
+  },
+  {
+    "objectID": "links.html#resources",
+    "href": "links.html#resources",
+    "title": "Links",
+    "section": "Resources",
+    "text": "Resources\n\nRefactoring Guru - Design Patterns"
+  },
+  {
+    "objectID": "links.html#my-other-sites",
+    "href": "links.html#my-other-sites",
+    "title": "Links",
+    "section": "My Other Sites",
+    "text": "My Other Sites\n\n\n\nSite\nDescription\n\n\n\n\nkimura\nA Dokuwiki site where I keep notes.\n\n\nFlickr\nPhotography (mostly landscape, climbing and cats).\n\n\nneil-snaps.co.uk\nWhere I fail to monetise my photography.\n\n\nSheffieldBoulder.uk\nAnother Dokuwiki site detailing artificial boulders around Sheffield.\n\n\nGitLab\nGit repos.\n\n\nGitHub (Personal)\nGit repos.\n\n\nGitHub (Work)\nGit repos."
+  }
+]

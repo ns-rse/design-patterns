@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Software Design Patterns</title>
+<link>https://ns-rse.github.io/design-patterns/index.html</link>
+<atom:link href="https://ns-rse.github.io/design-patterns/index.xml" rel="self" type="application/rss+xml"/>
+<description>Examples of Software Design Patterns</description>
+<generator>quarto-1.1.251</generator>
+<lastBuildDate>Mon, 06 Mar 2023 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Abstract Factory</title>
+  <dc:creator>Neil Shephard</dc:creator>
+  <link>https://ns-rse.github.io/design-patterns/posts/abstract-factory-method/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="links" class="level1">
+<h1>Links</h1>
+<ul>
+<li><a href="https://refactoring.guru/design-patterns/abstract-factory">Abstract Factory - Refactoring Guru</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>python</category>
+  <category>abstract factory</category>
+  <guid>https://ns-rse.github.io/design-patterns/posts/abstract-factory-method/index.html</guid>
+  <pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://live.staticflickr.com/393/32123358342_ce37f43588_k.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Factory Method</title>
+  <dc:creator>Neil Shephard</dc:creator>
+  <link>https://ns-rse.github.io/design-patterns/posts/factory-method/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="links" class="level1">
+<h1>Links</h1>
+<ul>
+<li><a href="https://refactoring.guru/design-patterns/factory-method">Factory Method - Refactoring Guru</a></li>
+<li><a href="https://realpython.com/factory-method-python/">The Factory Method Pattern and Its Implementation in Python – Real Python</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>python</category>
+  <category>factory method</category>
+  <guid>https://ns-rse.github.io/design-patterns/posts/factory-method/index.html</guid>
+  <pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://live.staticflickr.com/3549/3762239095_da34931d7e_k.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Singleton</title>
+  <dc:creator>Neil Shephard</dc:creator>
+  <link>https://ns-rse.github.io/design-patterns/posts/singleton/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="links" class="level1">
+<h1>Links</h1>
+<ul>
+<li><a href="https://refactoring.guru/design-patterns/singleton">Singleton - Refactoring Guru</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>python</category>
+  <category>singleton</category>
+  <guid>https://ns-rse.github.io/design-patterns/posts/singleton/index.html</guid>
+  <pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://live.staticflickr.com/4126/4949025595_b772c9e608_k.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Builder</title>
+  <dc:creator>Neil Shephard</dc:creator>
+  <link>https://ns-rse.github.io/design-patterns/posts/builder/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="links" class="level1">
+<h1>Links</h1>
+<ul>
+<li><a href="https://refactoring.guru/design-patterns/builder">Builder - Refactoring Guru</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>python</category>
+  <category>builder</category>
+  <guid>https://ns-rse.github.io/design-patterns/posts/builder/index.html</guid>
+  <pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://live.staticflickr.com/3470/4005646083_a313f30da7_k.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>TEMPLATE</title>
+  <dc:creator>Neil Shephard</dc:creator>
+  <link>https://ns-rse.github.io/design-patterns/posts/template/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="links" class="level1">
+<h1>Links</h1>
+<ul>
+<li><a href="https://refactoring.guru/design-patterns/">TEMPLATE - Refactoring Guru</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>python</category>
+  <category>TEMPLATE</category>
+  <guid>https://ns-rse.github.io/design-patterns/posts/template/index.html</guid>
+  <pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
