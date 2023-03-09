@@ -1,0 +1,23 @@
+project:
+  type: website
+
+website:
+  title: "Software Design Patterns"
+  site-url: https://ns-rse.github.io/design-patterns/
+  description: "Examples of Software Design Patterns"
+  navbar:
+    right:
+      - about.qmd
+      - links.qmd
+      - icon: github
+        href: https://github.com/ns-rse
+      - icon: twitter
+        href: https://twitter.com/nshephardRSE
+      - icon: rss
+        href: index.xml
+      - icon: mastodon
+        href: https://fosstodon.org/@nshephard
+format:
+  html:
+    theme: solar
+    css: styles.css

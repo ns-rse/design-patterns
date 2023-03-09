@@ -1,0 +1,19 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+  links:
+   - icon: mastodon
+     text: Mastodon
+     href: https://fosstodon.org/@nshephard
+   - icon: github
+     text: Github
+     href: https://github.com/ns-rse/
+   - icon: twitter
+     text: Twitter
+     href: https://twitter.com/nshephardRSE
+
+---
+
+This is a blog about [software design patterns](https://en.wikipedia.org/wiki/Software_design_Patterns)

@@ -1,0 +1,24 @@
+---
+title: "Factory Method"
+author: "Neil Shephard"
+date: "2023-03-06"
+categories: [python, factory method]
+image: https://live.staticflickr.com/3549/3762239095_da34931d7e_k.jpg
+from: markdown+emoji
+toc: true
+toc-depth: 3
+toc-location: right
+execute:
+  code_fold: true
+  code_link: true
+  code_tools: true
+  fig-cap-location: top
+  tbl-cap-location: top
+  warning: false
+---
+
+
+# Links
+
+* [Factory Method - Refactoring Guru](https://refactoring.guru/design-patterns/factory-method)
+* [The Factory Method Pattern and Its Implementation in Python – Real Python](https://realpython.com/factory-method-python/)

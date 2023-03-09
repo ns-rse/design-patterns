@@ -1,0 +1,23 @@
+---
+title: "Builder"
+author: "Neil Shephard"
+date: "2023-03-06"
+categories: [python, builder]
+image: https://live.staticflickr.com/3470/4005646083_a313f30da7_k.jpg
+from: markdown+emoji
+toc: true
+toc-depth: 3
+toc-location: right
+execute:
+  code_fold: true
+  code_link: true
+  code_tools: true
+  fig-cap-location: top
+  tbl-cap-location: top
+  warning: false
+---
+
+
+# Links
+
+* [Builder - Refactoring Guru](https://refactoring.guru/design-patterns/builder)
