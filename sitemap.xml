@@ -2,30 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ns-rse.github.io/design-patterns/links.html</loc>
-    <lastmod>2023-03-09T21:03:57.579Z</lastmod>
+    <lastmod>2023-03-09T21:06:51.884Z</lastmod>
   </url>
   <url>
     <loc>https://ns-rse.github.io/design-patterns/about.html</loc>
-    <lastmod>2023-03-09T21:03:58.207Z</lastmod>
+    <lastmod>2023-03-09T21:06:52.532Z</lastmod>
   </url>
   <url>
     <loc>https://ns-rse.github.io/design-patterns/index.html</loc>
-    <lastmod>2023-03-09T21:03:58.595Z</lastmod>
+    <lastmod>2023-03-09T21:06:52.948Z</lastmod>
   </url>
   <url>
     <loc>https://ns-rse.github.io/design-patterns/posts/builder/index.html</loc>
-    <lastmod>2023-03-09T21:03:58.883Z</lastmod>
+    <lastmod>2023-03-09T21:06:53.256Z</lastmod>
   </url>
   <url>
     <loc>https://ns-rse.github.io/design-patterns/posts/factory-method/index.html</loc>
-    <lastmod>2023-03-09T21:03:59.159Z</lastmod>
+    <lastmod>2023-03-09T21:06:53.556Z</lastmod>
   </url>
   <url>
     <loc>https://ns-rse.github.io/design-patterns/posts/singleton/index.html</loc>
-    <lastmod>2023-03-09T21:03:59.435Z</lastmod>
+    <lastmod>2023-03-09T21:06:53.856Z</lastmod>
   </url>
   <url>
     <loc>https://ns-rse.github.io/design-patterns/posts/abstract-factory-method/index.html</loc>
-    <lastmod>2023-03-09T21:03:59.703Z</lastmod>
+    <lastmod>2023-03-09T21:06:54.140Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ns-rse.github.io/design-patterns/template/index.html</loc>
+    <lastmod>2023-03-09T21:06:54.464Z</lastmod>
   </url>
 </urlset>
