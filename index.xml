@@ -34,30 +34,29 @@
 <span id="cb1-4"><span class="im" style="color: #00769E;">from</span> skimage.filters <span class="im" style="color: #00769E;">import</span> (</span>
 <span id="cb1-5">    threshold_local,</span>
 <span id="cb1-6">    threshold_mean,</span>
-<span id="cb1-7">    threshold_minimum,</span>
-<span id="cb1-8">    threshold_otsu,</span>
-<span id="cb1-9">    threshold_yen,</span>
-<span id="cb1-10">    threshold_triangle,</span>
-<span id="cb1-11">)</span>
+<span id="cb1-7">    threshold_otsu,</span>
+<span id="cb1-8">    threshold_yen,</span>
+<span id="cb1-9">    threshold_triangle,</span>
+<span id="cb1-10">)</span>
+<span id="cb1-11"></span>
 <span id="cb1-12"></span>
-<span id="cb1-13"></span>
-<span id="cb1-14"><span class="kw" style="color: #003B4F;">def</span> threshold(data: np.ndarray, method: <span class="bu" style="color: null;">str</span>, <span class="op" style="color: #5E5E5E;">**</span>kwargs: <span class="bu" style="color: null;">dict</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> <span class="bu" style="color: null;">float</span>:</span>
-<span id="cb1-15">    <span class="co" style="color: #5E5E5E;">"""Derive threshold for filtering of the given array using the specified filter.</span></span>
-<span id="cb1-16"></span>
-<span id="cb1-17"><span class="co" style="color: #5E5E5E;">    Parameters</span></span>
-<span id="cb1-18"><span class="co" style="color: #5E5E5E;">    ----------</span></span>
-<span id="cb1-19"><span class="co" style="color: #5E5E5E;">    data: np.ndarray</span></span>
-<span id="cb1-20"><span class="co" style="color: #5E5E5E;">        Numpy array representing the image to be filtered.</span></span>
-<span id="cb1-21"><span class="co" style="color: #5E5E5E;">    filter: str</span></span>
-<span id="cb1-22"><span class="co" style="color: #5E5E5E;">        Filter method from Scikit-image to apply.</span></span>
-<span id="cb1-23"></span>
-<span id="cb1-24"><span class="co" style="color: #5E5E5E;">    Returns</span></span>
-<span id="cb1-25"><span class="co" style="color: #5E5E5E;">    -------</span></span>
-<span id="cb1-26"><span class="co" style="color: #5E5E5E;">    np.ndarray</span></span>
-<span id="cb1-27"><span class="co" style="color: #5E5E5E;">        Filtered array.</span></span>
-<span id="cb1-28"><span class="co" style="color: #5E5E5E;">    """</span></span>
-<span id="cb1-29">    filter_threshold <span class="op" style="color: #5E5E5E;">=</span> _get_threshold(method)</span>
-<span id="cb1-30">    <span class="cf" style="color: #003B4F;">return</span> filter_threshold(data, <span class="op" style="color: #5E5E5E;">**</span>kwargs)</span></code></pre></div>
+<span id="cb1-13"><span class="kw" style="color: #003B4F;">def</span> threshold(data: np.ndarray, method: <span class="bu" style="color: null;">str</span>, <span class="op" style="color: #5E5E5E;">**</span>kwargs: <span class="bu" style="color: null;">dict</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> <span class="bu" style="color: null;">float</span>:</span>
+<span id="cb1-14">    <span class="co" style="color: #5E5E5E;">"""Derive threshold for filtering of the given array using the specified filter.</span></span>
+<span id="cb1-15"></span>
+<span id="cb1-16"><span class="co" style="color: #5E5E5E;">    Parameters</span></span>
+<span id="cb1-17"><span class="co" style="color: #5E5E5E;">    ----------</span></span>
+<span id="cb1-18"><span class="co" style="color: #5E5E5E;">    data: np.ndarray</span></span>
+<span id="cb1-19"><span class="co" style="color: #5E5E5E;">        Numpy array representing the image to be filtered.</span></span>
+<span id="cb1-20"><span class="co" style="color: #5E5E5E;">    filter: str</span></span>
+<span id="cb1-21"><span class="co" style="color: #5E5E5E;">        Filter method from Scikit-image to apply.</span></span>
+<span id="cb1-22"></span>
+<span id="cb1-23"><span class="co" style="color: #5E5E5E;">    Returns</span></span>
+<span id="cb1-24"><span class="co" style="color: #5E5E5E;">    -------</span></span>
+<span id="cb1-25"><span class="co" style="color: #5E5E5E;">    np.ndarray</span></span>
+<span id="cb1-26"><span class="co" style="color: #5E5E5E;">        Filtered array.</span></span>
+<span id="cb1-27"><span class="co" style="color: #5E5E5E;">    """</span></span>
+<span id="cb1-28">    filter_threshold <span class="op" style="color: #5E5E5E;">=</span> _get_threshold(method)</span>
+<span id="cb1-29">    <span class="cf" style="color: #003B4F;">return</span> filter_threshold(data, <span class="op" style="color: #5E5E5E;">**</span>kwargs)</span></code></pre></div>
 </section>
 <section id="define-private-function" class="level3">
 <h3 class="anchored" data-anchor-id="define-private-function">Define Private Function</h3>
@@ -79,11 +78,11 @@
 <span id="cb2-15"><span class="co" style="color: #5E5E5E;">    """</span></span>
 <span id="cb2-16">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"mean"</span>:</span>
 <span id="cb2-17">        <span class="cf" style="color: #003B4F;">return</span> _mean</span>
-<span id="cb2-18">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"otsu"</span>:</span>
+<span id="cb2-18">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"otsu"</span>:</span>
 <span id="cb2-19">        <span class="cf" style="color: #003B4F;">return</span> _otsu</span>
-<span id="cb2-20">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"triangle"</span>:</span>
+<span id="cb2-20">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"triangle"</span>:</span>
 <span id="cb2-21">        <span class="cf" style="color: #003B4F;">return</span> _triangle</span>
-<span id="cb2-22">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"yen"</span>:</span>
+<span id="cb2-22">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"yen"</span>:</span>
 <span id="cb2-23">        <span class="cf" style="color: #003B4F;">return</span> _yen</span>
 <span id="cb2-24">    <span class="cf" style="color: #003B4F;">raise</span> <span class="pp" style="color: #AD0000;">ValueError</span>(method)</span></code></pre></div>
 </section>
@@ -172,13 +171,13 @@
 <span id="cb6-20"><span class="co" style="color: #5E5E5E;">    """</span></span>
 <span id="cb6-21">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"mean"</span>:</span>
 <span id="cb6-22">        <span class="cf" style="color: #003B4F;">return</span> _mean</span>
-<span id="cb6-23">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"otsu"</span>:</span>
+<span id="cb6-23">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"otsu"</span>:</span>
 <span id="cb6-24">        <span class="cf" style="color: #003B4F;">return</span> _otsu</span>
-<span id="cb6-25">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"triangle"</span>:</span>
+<span id="cb6-25">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"triangle"</span>:</span>
 <span id="cb6-26">        <span class="cf" style="color: #003B4F;">return</span> _triangle</span>
-<span id="cb6-27">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"yen"</span>:</span>
+<span id="cb6-27">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"yen"</span>:</span>
 <span id="cb6-28">        <span class="cf" style="color: #003B4F;">return</span> _yen</span>
-<span id="cb6-29">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"li"</span>:    <span class="co" style="color: #5E5E5E;"># New method</span></span>
+<span id="cb6-29">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"li"</span>:    <span class="co" style="color: #5E5E5E;"># New method</span></span>
 <span id="cb6-30">        <span class="cf" style="color: #003B4F;">return</span> _li</span>
 <span id="cb6-31">    <span class="cf" style="color: #003B4F;">raise</span> <span class="pp" style="color: #AD0000;">ValueError</span>(method)</span>
 <span id="cb6-32"></span>
