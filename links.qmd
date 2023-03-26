@@ -27,6 +27,7 @@ useful. In addition there are a bunch of links to my other web-sites.
 
 | Site                                               | Description                                                                                                |
 |:---------------------------------------------------|:-----------------------------------------------------------------------------------------------------------|
+| [ns-rse](https://ns-rse.github.io)                 | A blog I occasionally post to.                                                                             |
 | [kimura](https://kimura.no-ip.info)                | A [Dokuwiki](https://www.dokuwiki.org/dokuwiki) site where I keep notes.                                   |
 | [Flickr](https://www.flickr.com/photos/slackline)  | Photography (mostly landscape, climbing and cats).                                                         |
 | [neil-snaps.co.uk](https://neil-snaps.co.uk)       | Where I fail to monetise my photography.                                                                   |

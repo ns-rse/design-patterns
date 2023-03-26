@@ -16,4 +16,8 @@ about:
 
 ---
 
-This is a blog about [software design patterns](https://en.wikipedia.org/wiki/Software_design_Patterns)
+This is a blog about [software design patterns](https://en.wikipedia.org/wiki/Software_design_Patterns) and is a method
+for me to develop my understanding of how they work.
+
+I have written the [python-design-patterns](https://github.com/ns-rse/python-design-patterns) package to implement each
+of the factory methods I have documented here with simple [pytest](https://pytest.org).
