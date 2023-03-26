@@ -225,6 +225,13 @@ def _li(data: np.ndarray, **kwargs: dict) -> float:
 
 And we add a parameter to the tests.
 
+
+# Conclusion
+
+The Factory Method is a simple design pattern that is very flexible and easy to understand. For an example please refer
+to the associated repository [python-design-patterns](https://github.com/ns-rse/python-design-patterns) where you will
+find the above code.
+
 # Links
 
 * [Factory Method - Refactoring Guru](https://refactoring.guru/design-patterns/factory-method)
