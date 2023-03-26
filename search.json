@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This is a blog about software design patterns and is a method for me to develop my understanding of how they work.\nI have written the python-design-patterns package to implement each of the factory methods I have documented here with simple pytest."
+  },
+  {
     "objectID": "links.html",
     "href": "links.html",
     "title": "Links",
@@ -18,49 +25,35 @@
     "href": "links.html#my-other-sites",
     "title": "Links",
     "section": "My Other Sites",
-    "text": "My Other Sites\n\n\n\nSite\nDescription\n\n\n\n\nkimura\nA Dokuwiki site where I keep notes.\n\n\nFlickr\nPhotography (mostly landscape, climbing and cats).\n\n\nneil-snaps.co.uk\nWhere I fail to monetise my photography.\n\n\nSheffieldBoulder.uk\nAnother Dokuwiki site detailing artificial boulders around Sheffield.\n\n\nGitLab\nGit repos.\n\n\nGitHub (Personal)\nGit repos.\n\n\nGitHub (Work)\nGit repos."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "This is a blog about software design patterns"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Software Design Patterns",
-    "section": "",
-    "text": "Builder\n\n\n\n\n\n\n\npython\n\n\nbuilder\n\n\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\n  \n\n\n\n\nFactory Method\n\n\n\n\n\n\n\npython\n\n\nfactory method\n\n\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\n  \n\n\n\n\nSingleton\n\n\n\n\n\n\n\npython\n\n\nsingleton\n\n\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\n  \n\n\n\n\nAbstract Factory\n\n\n\n\n\n\n\npython\n\n\nabstract factory\n\n\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/builder/index.html",
-    "href": "posts/builder/index.html",
-    "title": "Builder",
-    "section": "",
-    "text": "Links\n\nBuilder - Refactoring Guru"
+    "text": "My Other Sites\n\n\n\nSite\nDescription\n\n\n\n\nns-rse\nA blog I occasionally post to.\n\n\nkimura\nA Dokuwiki site where I keep notes.\n\n\nFlickr\nPhotography (mostly landscape, climbing and cats).\n\n\nneil-snaps.co.uk\nWhere I fail to monetise my photography.\n\n\nSheffieldBoulder.uk\nAnother Dokuwiki site detailing artificial boulders around Sheffield.\n\n\nGitLab\nGit repos.\n\n\nGitHub (Personal)\nGit repos.\n\n\nGitHub (Work)\nGit repos."
   },
   {
     "objectID": "posts/factory-method/index.html",
     "href": "posts/factory-method/index.html",
     "title": "Factory Method",
     "section": "",
-    "text": "Links\n\nFactory Method - Refactoring Guru\nThe Factory Method Pattern and Its Implementation in Python – Real Python"
+    "text": "The Factory Method is a simple and widely used design pattern.\nThe idea is that you wish to carry out a task but there are different ways of achieving this. For example you may wish to open files, but there are different file types that may need opening. Or you may wish to apply some sort of filter to image data, but there are different filters to choose from. The user should have a single command to call, but in the background the work that is done is chosen based on the supplied data/parameters. This means that it is possible to extend the supported functions without changing user interface and means the design pattern helps fulfill the S and O criteria of the SOLID design principles, that is Single-responsibility and Open-closed."
   },
   {
-    "objectID": "posts/singleton/index.html",
-    "href": "posts/singleton/index.html",
-    "title": "Singleton",
-    "section": "",
-    "text": "Links\n\nSingleton - Refactoring Guru"
+    "objectID": "posts/factory-method/index.html#worked-example",
+    "href": "posts/factory-method/index.html#worked-example",
+    "title": "Factory Method",
+    "section": "Worked Example",
+    "text": "Worked Example\nAs a worked example we will use the different threshold filtering methods available from the image processing package scikit-image. There are a number of filters available and typically they take a Numpy array which represents an image and process it in the given manner.\n\nDefine Interface\nThis is the function that users will call, it takes two arguments, data which is a np.ndarray (Numpy array) representing the image for which a threshold for filtering is to be derived, and method the threshold method to use.\n\"\"\"Factory Method Example\"\"\"\nfrom typing import Callable\nimport numpy as np\nfrom skimage.filters import (\n    threshold_local,\n    threshold_mean,\n    threshold_minimum,\n    threshold_otsu,\n    threshold_yen,\n    threshold_triangle,\n)\n\n\ndef threshold(data: np.ndarray, method: str, **kwargs: dict) -> float:\n    \"\"\"Derive threshold for filtering of the given array using the specified filter.\n\n    Parameters\n    ----------\n    data: np.ndarray\n        Numpy array representing the image to be filtered.\n    filter: str\n        Filter method from Scikit-image to apply.\n\n    Returns\n    -------\n    np.ndarray\n        Filtered array.\n    \"\"\"\n    filter_threshold = _get_threshold(method)\n    return filter_threshold(data, **kwargs)\n\n\nDefine Private Function\nNext we define a private _get_threshold() which determines based on\ndef _get_threshold(method: str) -> Callable:\n    \"\"\"Creator component which determines which filter method to use.\n\n    Parameters\n    ----------\n    data: np.ndarray\n        Numpy array representing the image to be filtered.\n    filter: str\n        Filter method from Scikit-image to apply.\n\n    Returns\n    -------\n    np.ndarray\n        Filtered array.\n    \"\"\"\n    if method == \"mean\":\n        return _mean\n    elif method == \"otsu\":\n        return _otsu\n    elif method == \"triangle\":\n        return _triangle\n    elif method == \"yen\":\n        return _yen\n    raise ValueError(method)\n\n\nDefine filters\nWe now define each of the functions which\ndef _mean(data: np.ndarray, **kwargs: dict) -> float:\n    \"\"\"Threshold based on mean method.\"\"\"\n    return threshold_mean(data, **kwargs)\n\n\ndef _otsu(data: np.ndarray, **kwargs: dict) -> float:\n    \"\"\"Threshold based on Otsu's method.\"\"\"\n    return threshold_otsu(data, **kwargs)\n\n\ndef _triangle(data: np.ndarray, **kwargs: dict) -> float:\n    \"\"\"Threshold based on triangle method.\"\"\"\n    return threshold_triangle(data, **kwargs)\n\n\ndef _yen(data: np.ndarray, **kwargs: dict) -> float:\n    \"\"\"Threshold based on Yen's method.\"\"\"\n    return threshold_yen(data, **kwargs)"
   },
   {
-    "objectID": "posts/abstract-factory-method/index.html",
-    "href": "posts/abstract-factory-method/index.html",
-    "title": "Abstract Factory",
-    "section": "",
-    "text": "Links\n\nAbstract Factory - Refactoring Guru"
+    "objectID": "posts/factory-method/index.html#usage",
+    "href": "posts/factory-method/index.html#usage",
+    "title": "Factory Method",
+    "section": "Usage",
+    "text": "Usage\nNow that the interface has been defined users only need to import the single function threshold()\nimport numpy as np\n\nfrom python_design_patterns import threshold\n\ndata = np.random(100, 100, seed=52449807)\n\nfilter_threshold = threshold(data, method=\"otsu\")\n\nTests\nBeing diligent programmers a short test-suite is given by the following.\n\"\"\"Tests for Factory Method.\"\"\"\nimport numpy as np\nimport pytest\n\nfrom python_design_patterns.factory_method import threshold\n\n\nrng = np.random.default_rng(seed=501472)\npytest.random_array = rng.random((10, 10))\n\n\n@pytest.mark.parametrize(\n    \"data,method,expected_threshold\",\n    [\n        (pytest.random_array, \"mean\", 0.45497009177756903),\n        (pytest.random_array, \"otsu\", 0.4355642854559527),\n        (pytest.random_array, \"triangle\", 0.38976173291463245),\n        (pytest.random_array, \"yen\", 0.3706773360224157),\n    ],\n)\ndef test_threshold(data: np.ndarray, method: str, expected_threshold: float) -> None:\n    assert threshold(data, method) == expected_threshold"
+  },
+  {
+    "objectID": "posts/factory-method/index.html#extending",
+    "href": "posts/factory-method/index.html#extending",
+    "title": "Factory Method",
+    "section": "Extending",
+    "text": "Extending\nWe decide we want to extend the threshold() function to allow Li’s method (skimage.filters.threshold_li()) doing so is now really simple. we don’t need to change the threshold() function itself (other than to list li as an option in the docstring), but we add an elif method == \"li\": clause to _get_threshold() that returns a Callable of a new function _li() which returns the result of using skimage.filters.threshold_li(). NB don’t forget you have to import the threshold_li method too.\nfrom skimage.filters import (\n    ...\n    threshold_li\n)\n\ndef _get_threshold(method: str) -> Callable:\n    \"\"\"Creator component which determines which filter method to use.\n\n    Parameters\n    ----------\n    data: np.ndarray\n        Numpy array representing the image to be filtered.\n    filter: str\n        Filter method from Scikit-image to apply.\n\n    Returns\n    -------\n    np.ndarray\n        Filtered array.\n    \"\"\"\n    if method == \"mean\":\n        return _mean\n    elif method == \"otsu\":\n        return _otsu\n    elif method == \"triangle\":\n        return _triangle\n    elif method == \"yen\":\n        return _yen\n    elif method == \"li\":    # New method\n        return _li\n    raise ValueError(method)\n\n\ndef _li(data: np.ndarray, **kwargs: dict) -> float:\n    \"\"\"Threshold based on Li method.\"\"\"\n    return threshold_li(data, **kwargs)\nAnd we add a parameter to the tests."
   },
   {
     "objectID": "template/index.html",
@@ -68,5 +61,12 @@
     "title": "TEMPLATE",
     "section": "",
     "text": "Links\n\nTEMPLATE - Refactoring Guru"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Software Design Patterns",
+    "section": "",
+    "text": "Factory Method\n\n\n\n\n\n\n\npython\n\n\nfactory method\n\n\n\n\n\n\n\n\n\n\n\nMar 6, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\nNo matching items"
   }
 ]

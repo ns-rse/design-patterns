@@ -12,31 +12,6 @@
 <generator>quarto-1.3.14</generator>
 <lastBuildDate>Mon, 06 Mar 2023 00:00:00 GMT</lastBuildDate>
 <item>
-  <title>Builder</title>
-  <dc:creator>Neil Shephard</dc:creator>
-  <link>https://ns-rse.github.io/design-patterns/posts/builder/index.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="links" class="level1">
-<h1>Links</h1>
-<ul>
-<li><a href="https://refactoring.guru/design-patterns/builder">Builder - Refactoring Guru</a></li>
-</ul>
-
-
-</section>
-
- ]]></description>
-  <category>python</category>
-  <category>builder</category>
-  <guid>https://ns-rse.github.io/design-patterns/posts/builder/index.html</guid>
-  <pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate>
-  <media:content url="https://live.staticflickr.com/3470/4005646083_a313f30da7_k.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
   <title>Factory Method</title>
   <dc:creator>Neil Shephard</dc:creator>
   <link>https://ns-rse.github.io/design-patterns/posts/factory-method/index.html</link>
@@ -45,6 +20,174 @@
 
 
 
+<p>The Factory Method is a simple and widely used design pattern.</p>
+<p>The idea is that you wish to carry out a task but there are different ways of achieving this. For example you may wish to open files, but there are different file types that may need opening. Or you may wish to apply some sort of filter to image data, but there are different filters to choose from. The user should have a single command to call, but in the background the work that is done is chosen based on the supplied data/parameters. This means that it is possible to extend the supported functions without changing user interface and means the design pattern helps fulfill the <strong>S</strong> and <strong>O</strong> criteria of the <a href="https://en.wikipedia.org/wiki/SOLID">SOLID</a> design principles, that is <em>Single-responsibility</em> and <em>Open-closed</em>.</p>
+<section id="worked-example" class="level2">
+<h2 class="anchored" data-anchor-id="worked-example">Worked Example</h2>
+<p>As a worked example we will use the different <a href="https://scikit-image.org/docs/stable/api/skimage.filters.html">threshold filtering methods</a> available from the image processing package <a href="https://scikit-image.org/">scikit-image</a>. There are a number of filters available and typically they take a <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html">Numpy array</a> which represents an image and process it in the given manner.</p>
+<section id="define-interface" class="level3">
+<h3 class="anchored" data-anchor-id="define-interface">Define Interface</h3>
+<p>This is the function that users will call, it takes two arguments, <code>data</code> which is a <code>np.ndarray</code> (Numpy array) representing the image for which a threshold for filtering is to be derived, and <code>method</code> the threshold method to use.</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;">"""Factory Method Example"""</span></span>
+<span id="cb1-2"><span class="im" style="color: #00769E;">from</span> typing <span class="im" style="color: #00769E;">import</span> Callable</span>
+<span id="cb1-3"><span class="im" style="color: #00769E;">import</span> numpy <span class="im" style="color: #00769E;">as</span> np</span>
+<span id="cb1-4"><span class="im" style="color: #00769E;">from</span> skimage.filters <span class="im" style="color: #00769E;">import</span> (</span>
+<span id="cb1-5">    threshold_local,</span>
+<span id="cb1-6">    threshold_mean,</span>
+<span id="cb1-7">    threshold_minimum,</span>
+<span id="cb1-8">    threshold_otsu,</span>
+<span id="cb1-9">    threshold_yen,</span>
+<span id="cb1-10">    threshold_triangle,</span>
+<span id="cb1-11">)</span>
+<span id="cb1-12"></span>
+<span id="cb1-13"></span>
+<span id="cb1-14"><span class="kw" style="color: #003B4F;">def</span> threshold(data: np.ndarray, method: <span class="bu" style="color: null;">str</span>, <span class="op" style="color: #5E5E5E;">**</span>kwargs: <span class="bu" style="color: null;">dict</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> <span class="bu" style="color: null;">float</span>:</span>
+<span id="cb1-15">    <span class="co" style="color: #5E5E5E;">"""Derive threshold for filtering of the given array using the specified filter.</span></span>
+<span id="cb1-16"></span>
+<span id="cb1-17"><span class="co" style="color: #5E5E5E;">    Parameters</span></span>
+<span id="cb1-18"><span class="co" style="color: #5E5E5E;">    ----------</span></span>
+<span id="cb1-19"><span class="co" style="color: #5E5E5E;">    data: np.ndarray</span></span>
+<span id="cb1-20"><span class="co" style="color: #5E5E5E;">        Numpy array representing the image to be filtered.</span></span>
+<span id="cb1-21"><span class="co" style="color: #5E5E5E;">    filter: str</span></span>
+<span id="cb1-22"><span class="co" style="color: #5E5E5E;">        Filter method from Scikit-image to apply.</span></span>
+<span id="cb1-23"></span>
+<span id="cb1-24"><span class="co" style="color: #5E5E5E;">    Returns</span></span>
+<span id="cb1-25"><span class="co" style="color: #5E5E5E;">    -------</span></span>
+<span id="cb1-26"><span class="co" style="color: #5E5E5E;">    np.ndarray</span></span>
+<span id="cb1-27"><span class="co" style="color: #5E5E5E;">        Filtered array.</span></span>
+<span id="cb1-28"><span class="co" style="color: #5E5E5E;">    """</span></span>
+<span id="cb1-29">    filter_threshold <span class="op" style="color: #5E5E5E;">=</span> _get_threshold(method)</span>
+<span id="cb1-30">    <span class="cf" style="color: #003B4F;">return</span> filter_threshold(data, <span class="op" style="color: #5E5E5E;">**</span>kwargs)</span></code></pre></div>
+</section>
+<section id="define-private-function" class="level3">
+<h3 class="anchored" data-anchor-id="define-private-function">Define Private Function</h3>
+<p>Next we define a private <code>_get_threshold()</code> which determines based on</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="kw" style="color: #003B4F;">def</span> _get_threshold(method: <span class="bu" style="color: null;">str</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> Callable:</span>
+<span id="cb2-2">    <span class="co" style="color: #5E5E5E;">"""Creator component which determines which filter method to use.</span></span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;">    Parameters</span></span>
+<span id="cb2-5"><span class="co" style="color: #5E5E5E;">    ----------</span></span>
+<span id="cb2-6"><span class="co" style="color: #5E5E5E;">    data: np.ndarray</span></span>
+<span id="cb2-7"><span class="co" style="color: #5E5E5E;">        Numpy array representing the image to be filtered.</span></span>
+<span id="cb2-8"><span class="co" style="color: #5E5E5E;">    filter: str</span></span>
+<span id="cb2-9"><span class="co" style="color: #5E5E5E;">        Filter method from Scikit-image to apply.</span></span>
+<span id="cb2-10"></span>
+<span id="cb2-11"><span class="co" style="color: #5E5E5E;">    Returns</span></span>
+<span id="cb2-12"><span class="co" style="color: #5E5E5E;">    -------</span></span>
+<span id="cb2-13"><span class="co" style="color: #5E5E5E;">    np.ndarray</span></span>
+<span id="cb2-14"><span class="co" style="color: #5E5E5E;">        Filtered array.</span></span>
+<span id="cb2-15"><span class="co" style="color: #5E5E5E;">    """</span></span>
+<span id="cb2-16">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"mean"</span>:</span>
+<span id="cb2-17">        <span class="cf" style="color: #003B4F;">return</span> _mean</span>
+<span id="cb2-18">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"otsu"</span>:</span>
+<span id="cb2-19">        <span class="cf" style="color: #003B4F;">return</span> _otsu</span>
+<span id="cb2-20">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"triangle"</span>:</span>
+<span id="cb2-21">        <span class="cf" style="color: #003B4F;">return</span> _triangle</span>
+<span id="cb2-22">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"yen"</span>:</span>
+<span id="cb2-23">        <span class="cf" style="color: #003B4F;">return</span> _yen</span>
+<span id="cb2-24">    <span class="cf" style="color: #003B4F;">raise</span> <span class="pp" style="color: #AD0000;">ValueError</span>(method)</span></code></pre></div>
+</section>
+<section id="define-filters" class="level3">
+<h3 class="anchored" data-anchor-id="define-filters">Define filters</h3>
+<p>We now define each of the functions which</p>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="kw" style="color: #003B4F;">def</span> _mean(data: np.ndarray, <span class="op" style="color: #5E5E5E;">**</span>kwargs: <span class="bu" style="color: null;">dict</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> <span class="bu" style="color: null;">float</span>:</span>
+<span id="cb3-2">    <span class="co" style="color: #5E5E5E;">"""Threshold based on mean method."""</span></span>
+<span id="cb3-3">    <span class="cf" style="color: #003B4F;">return</span> threshold_mean(data, <span class="op" style="color: #5E5E5E;">**</span>kwargs)</span>
+<span id="cb3-4"></span>
+<span id="cb3-5"></span>
+<span id="cb3-6"><span class="kw" style="color: #003B4F;">def</span> _otsu(data: np.ndarray, <span class="op" style="color: #5E5E5E;">**</span>kwargs: <span class="bu" style="color: null;">dict</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> <span class="bu" style="color: null;">float</span>:</span>
+<span id="cb3-7">    <span class="co" style="color: #5E5E5E;">"""Threshold based on Otsu's method."""</span></span>
+<span id="cb3-8">    <span class="cf" style="color: #003B4F;">return</span> threshold_otsu(data, <span class="op" style="color: #5E5E5E;">**</span>kwargs)</span>
+<span id="cb3-9"></span>
+<span id="cb3-10"></span>
+<span id="cb3-11"><span class="kw" style="color: #003B4F;">def</span> _triangle(data: np.ndarray, <span class="op" style="color: #5E5E5E;">**</span>kwargs: <span class="bu" style="color: null;">dict</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> <span class="bu" style="color: null;">float</span>:</span>
+<span id="cb3-12">    <span class="co" style="color: #5E5E5E;">"""Threshold based on triangle method."""</span></span>
+<span id="cb3-13">    <span class="cf" style="color: #003B4F;">return</span> threshold_triangle(data, <span class="op" style="color: #5E5E5E;">**</span>kwargs)</span>
+<span id="cb3-14"></span>
+<span id="cb3-15"></span>
+<span id="cb3-16"><span class="kw" style="color: #003B4F;">def</span> _yen(data: np.ndarray, <span class="op" style="color: #5E5E5E;">**</span>kwargs: <span class="bu" style="color: null;">dict</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> <span class="bu" style="color: null;">float</span>:</span>
+<span id="cb3-17">    <span class="co" style="color: #5E5E5E;">"""Threshold based on Yen's method."""</span></span>
+<span id="cb3-18">    <span class="cf" style="color: #003B4F;">return</span> threshold_yen(data, <span class="op" style="color: #5E5E5E;">**</span>kwargs)</span></code></pre></div>
+</section>
+</section>
+<section id="usage" class="level2">
+<h2 class="anchored" data-anchor-id="usage">Usage</h2>
+<p>Now that the interface has been defined users only need to import the single function <code>threshold()</code></p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="im" style="color: #00769E;">import</span> numpy <span class="im" style="color: #00769E;">as</span> np</span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="im" style="color: #00769E;">from</span> python_design_patterns <span class="im" style="color: #00769E;">import</span> threshold</span>
+<span id="cb4-4"></span>
+<span id="cb4-5">data <span class="op" style="color: #5E5E5E;">=</span> np.random(<span class="dv" style="color: #AD0000;">100</span>, <span class="dv" style="color: #AD0000;">100</span>, seed<span class="op" style="color: #5E5E5E;">=</span><span class="dv" style="color: #AD0000;">52449807</span>)</span>
+<span id="cb4-6"></span>
+<span id="cb4-7">filter_threshold <span class="op" style="color: #5E5E5E;">=</span> threshold(data, method<span class="op" style="color: #5E5E5E;">=</span><span class="st" style="color: #20794D;">"otsu"</span>)</span></code></pre></div>
+<section id="tests" class="level3">
+<h3 class="anchored" data-anchor-id="tests">Tests</h3>
+<p>Being diligent programmers a short test-suite is given by the following.</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;">"""Tests for Factory Method."""</span></span>
+<span id="cb5-2"><span class="im" style="color: #00769E;">import</span> numpy <span class="im" style="color: #00769E;">as</span> np</span>
+<span id="cb5-3"><span class="im" style="color: #00769E;">import</span> pytest</span>
+<span id="cb5-4"></span>
+<span id="cb5-5"><span class="im" style="color: #00769E;">from</span> python_design_patterns.factory_method <span class="im" style="color: #00769E;">import</span> threshold</span>
+<span id="cb5-6"></span>
+<span id="cb5-7"></span>
+<span id="cb5-8">rng <span class="op" style="color: #5E5E5E;">=</span> np.random.default_rng(seed<span class="op" style="color: #5E5E5E;">=</span><span class="dv" style="color: #AD0000;">501472</span>)</span>
+<span id="cb5-9">pytest.random_array <span class="op" style="color: #5E5E5E;">=</span> rng.random((<span class="dv" style="color: #AD0000;">10</span>, <span class="dv" style="color: #AD0000;">10</span>))</span>
+<span id="cb5-10"></span>
+<span id="cb5-11"></span>
+<span id="cb5-12"><span class="at" style="color: #657422;">@pytest.mark.parametrize</span>(</span>
+<span id="cb5-13">    <span class="st" style="color: #20794D;">"data,method,expected_threshold"</span>,</span>
+<span id="cb5-14">    [</span>
+<span id="cb5-15">        (pytest.random_array, <span class="st" style="color: #20794D;">"mean"</span>, <span class="fl" style="color: #AD0000;">0.45497009177756903</span>),</span>
+<span id="cb5-16">        (pytest.random_array, <span class="st" style="color: #20794D;">"otsu"</span>, <span class="fl" style="color: #AD0000;">0.4355642854559527</span>),</span>
+<span id="cb5-17">        (pytest.random_array, <span class="st" style="color: #20794D;">"triangle"</span>, <span class="fl" style="color: #AD0000;">0.38976173291463245</span>),</span>
+<span id="cb5-18">        (pytest.random_array, <span class="st" style="color: #20794D;">"yen"</span>, <span class="fl" style="color: #AD0000;">0.3706773360224157</span>),</span>
+<span id="cb5-19">    ],</span>
+<span id="cb5-20">)</span>
+<span id="cb5-21"><span class="kw" style="color: #003B4F;">def</span> test_threshold(data: np.ndarray, method: <span class="bu" style="color: null;">str</span>, expected_threshold: <span class="bu" style="color: null;">float</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> <span class="va" style="color: #111111;">None</span>:</span>
+<span id="cb5-22">    <span class="cf" style="color: #003B4F;">assert</span> threshold(data, method) <span class="op" style="color: #5E5E5E;">==</span> expected_threshold</span></code></pre></div>
+</section>
+</section>
+<section id="extending" class="level2">
+<h2 class="anchored" data-anchor-id="extending">Extending</h2>
+<p>We decide we want to extend the <code>threshold()</code> function to allow Li’s method (<a href="https://scikit-image.org/docs/stable/api/skimage.filters.html#skimage.filters.threshold_li">skimage.filters.threshold_li()</a>) doing so is now really simple. we don’t need to change the <code>threshold()</code> function itself (other than to list <code>li</code> as an option in the docstring), but we add an <code>elif method == "li":</code> clause to <code>_get_threshold()</code> that returns a <code>Callable</code> of a new function <code>_li()</code> which returns the result of using <code>skimage.filters.threshold_li()</code>. <strong>NB</strong> don’t forget you have to <code>import</code> the <code>threshold_li</code> method too.</p>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="im" style="color: #00769E;">from</span> skimage.filters <span class="im" style="color: #00769E;">import</span> (</span>
+<span id="cb6-2">    ...</span>
+<span id="cb6-3">    threshold_li</span>
+<span id="cb6-4">)</span>
+<span id="cb6-5"></span>
+<span id="cb6-6"><span class="kw" style="color: #003B4F;">def</span> _get_threshold(method: <span class="bu" style="color: null;">str</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> Callable:</span>
+<span id="cb6-7">    <span class="co" style="color: #5E5E5E;">"""Creator component which determines which filter method to use.</span></span>
+<span id="cb6-8"></span>
+<span id="cb6-9"><span class="co" style="color: #5E5E5E;">    Parameters</span></span>
+<span id="cb6-10"><span class="co" style="color: #5E5E5E;">    ----------</span></span>
+<span id="cb6-11"><span class="co" style="color: #5E5E5E;">    data: np.ndarray</span></span>
+<span id="cb6-12"><span class="co" style="color: #5E5E5E;">        Numpy array representing the image to be filtered.</span></span>
+<span id="cb6-13"><span class="co" style="color: #5E5E5E;">    filter: str</span></span>
+<span id="cb6-14"><span class="co" style="color: #5E5E5E;">        Filter method from Scikit-image to apply.</span></span>
+<span id="cb6-15"></span>
+<span id="cb6-16"><span class="co" style="color: #5E5E5E;">    Returns</span></span>
+<span id="cb6-17"><span class="co" style="color: #5E5E5E;">    -------</span></span>
+<span id="cb6-18"><span class="co" style="color: #5E5E5E;">    np.ndarray</span></span>
+<span id="cb6-19"><span class="co" style="color: #5E5E5E;">        Filtered array.</span></span>
+<span id="cb6-20"><span class="co" style="color: #5E5E5E;">    """</span></span>
+<span id="cb6-21">    <span class="cf" style="color: #003B4F;">if</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"mean"</span>:</span>
+<span id="cb6-22">        <span class="cf" style="color: #003B4F;">return</span> _mean</span>
+<span id="cb6-23">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"otsu"</span>:</span>
+<span id="cb6-24">        <span class="cf" style="color: #003B4F;">return</span> _otsu</span>
+<span id="cb6-25">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"triangle"</span>:</span>
+<span id="cb6-26">        <span class="cf" style="color: #003B4F;">return</span> _triangle</span>
+<span id="cb6-27">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"yen"</span>:</span>
+<span id="cb6-28">        <span class="cf" style="color: #003B4F;">return</span> _yen</span>
+<span id="cb6-29">    <span class="cf" style="color: #003B4F;">elif</span> method <span class="op" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"li"</span>:    <span class="co" style="color: #5E5E5E;"># New method</span></span>
+<span id="cb6-30">        <span class="cf" style="color: #003B4F;">return</span> _li</span>
+<span id="cb6-31">    <span class="cf" style="color: #003B4F;">raise</span> <span class="pp" style="color: #AD0000;">ValueError</span>(method)</span>
+<span id="cb6-32"></span>
+<span id="cb6-33"></span>
+<span id="cb6-34"><span class="kw" style="color: #003B4F;">def</span> _li(data: np.ndarray, <span class="op" style="color: #5E5E5E;">**</span>kwargs: <span class="bu" style="color: null;">dict</span>) <span class="op" style="color: #5E5E5E;">-&gt;</span> <span class="bu" style="color: null;">float</span>:</span>
+<span id="cb6-35">    <span class="co" style="color: #5E5E5E;">"""Threshold based on Li method."""</span></span>
+<span id="cb6-36">    <span class="cf" style="color: #003B4F;">return</span> threshold_li(data, <span class="op" style="color: #5E5E5E;">**</span>kwargs)</span></code></pre></div>
+<p>And we add a parameter to the tests.</p>
+</section>
 <section id="links" class="level1">
 <h1>Links</h1>
 <ul>
@@ -61,56 +204,6 @@
   <guid>https://ns-rse.github.io/design-patterns/posts/factory-method/index.html</guid>
   <pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate>
   <media:content url="https://live.staticflickr.com/3549/3762239095_da34931d7e_k.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Singleton</title>
-  <dc:creator>Neil Shephard</dc:creator>
-  <link>https://ns-rse.github.io/design-patterns/posts/singleton/index.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="links" class="level1">
-<h1>Links</h1>
-<ul>
-<li><a href="https://refactoring.guru/design-patterns/singleton">Singleton - Refactoring Guru</a></li>
-</ul>
-
-
-</section>
-
- ]]></description>
-  <category>python</category>
-  <category>singleton</category>
-  <guid>https://ns-rse.github.io/design-patterns/posts/singleton/index.html</guid>
-  <pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate>
-  <media:content url="https://live.staticflickr.com/4126/4949025595_b772c9e608_k.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Abstract Factory</title>
-  <dc:creator>Neil Shephard</dc:creator>
-  <link>https://ns-rse.github.io/design-patterns/posts/abstract-factory-method/index.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="links" class="level1">
-<h1>Links</h1>
-<ul>
-<li><a href="https://refactoring.guru/design-patterns/abstract-factory">Abstract Factory - Refactoring Guru</a></li>
-</ul>
-
-
-</section>
-
- ]]></description>
-  <category>python</category>
-  <category>abstract factory</category>
-  <guid>https://ns-rse.github.io/design-patterns/posts/abstract-factory-method/index.html</guid>
-  <pubDate>Mon, 06 Mar 2023 00:00:00 GMT</pubDate>
-  <media:content url="https://live.staticflickr.com/393/32123358342_ce37f43588_k.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

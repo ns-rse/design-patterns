@@ -2,10 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/builder/index.html",
-      "/posts/factory-method/index.html",
-      "/posts/singleton/index.html",
-      "/posts/abstract-factory-method/index.html"
+      "/posts/factory-method/index.html"
     ]
   }
 ]
