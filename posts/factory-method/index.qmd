@@ -1,7 +1,7 @@
 ---
 title: "Factory Method"
 author: "Neil Shephard"
-date: "2023-03-06"
+date: "2023-03-26"
 categories: [python, factory method]
 image: https://live.staticflickr.com/3549/3762239095_da34931d7e_k.jpg
 from: markdown+emoji
