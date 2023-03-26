@@ -236,3 +236,5 @@ find the above code.
 
 * [Factory Method - Refactoring Guru](https://refactoring.guru/design-patterns/factory-method)
 * [The Factory Method Pattern and Its Implementation in Python – Real Python](https://realpython.com/factory-method-python/)
+
+{{< elevator >}}
