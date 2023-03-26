@@ -19,6 +19,7 @@ execute:
 
 The Factory Method is a simple and widely used design pattern.
 
+![[_One way in, lots of options._ Picture by me.](https://www.flickr.com/photos/slackline/3762239095/in/album-72157621867275270/)](https://live.staticflickr.com/3549/3762239095_da34931d7e_k.jpg)
 
 The idea is that you wish to carry out a task but there are different ways of achieving this. For example you may wish
 to open files, but there are different file types that may need opening. Or you may wish to apply some sort of filter to
