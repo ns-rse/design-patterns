@@ -187,6 +187,10 @@
 <span id="cb6-36">    <span class="cf" style="color: #003B4F;">return</span> threshold_li(data, <span class="op" style="color: #5E5E5E;">**</span>kwargs)</span></code></pre></div>
 <p>And we add a parameter to the tests.</p>
 </section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>The Factory Method is a simple design pattern that is very flexible and easy to understand. For an example please refer to the associated repository <a href="https://github.com/ns-rse/python-design-patterns">python-design-patterns</a> where you will find the above code.</p>
+</section>
 <section id="links" class="level1">
 <h1>Links</h1>
 <ul>
