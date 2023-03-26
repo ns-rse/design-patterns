@@ -104,6 +104,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/elevatorjs-1.0.0/elevator.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -242,6 +243,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <p>The Factory Method is a simple and widely used design pattern.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://live.staticflickr.com/3549/3762239095_da34931d7e_k.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><a href="https://www.flickr.com/photos/slackline/3762239095/in/album-72157621867275270/"><em>One way in, lots of options.</em> Picture by me.</a></figcaption><p></p>
+</figure>
+</div>
 <p>The idea is that you wish to carry out a task but there are different ways of achieving this. For example you may wish to open files, but there are different file types that may need opening. Or you may wish to apply some sort of filter to image data, but there are different filters to choose from. The user should have a single command to call, but in the background the work that is done is chosen based on the supplied data/parameters. This means that it is possible to extend the supported functions without changing user interface and means the design pattern helps fulfill the <strong>S</strong> and <strong>O</strong> criteria of the <a href="https://en.wikipedia.org/wiki/SOLID">SOLID</a> design principles, that is <em>Single-responsibility</em> and <em>Open-closed</em>.</p>
 <section id="worked-example" class="level2">
 <h2 class="anchored" data-anchor-id="worked-example">Worked Example</h2>
@@ -418,6 +425,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://refactoring.guru/design-patterns/factory-method">Factory Method - Refactoring Guru</a></li>
 <li><a href="https://realpython.com/factory-method-python/">The Factory Method Pattern and Its Implementation in Python – Real Python</a></li>
 </ul>
+<p><script>window.onload = function() { var elevator = new Elevator({ element: document.querySelector(".elevator-button"),  mainAudio: "", endAudio: "ding.mp3" }); }</script><button class="btn btn-outline-primary elevator-button" type="submit">Return to the top!</button></p>
 
 
 </section>
