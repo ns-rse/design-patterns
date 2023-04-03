@@ -1,0 +1,62 @@
+---
+title: "Singleton"
+author: "Neil Shephard"
+date: "2023-03-28"
+categories: [python, singleton]
+image: https://live.staticflickr.com/4126/4949025595_b772c9e608_k.jpg
+from: markdown+emoji
+toc: true
+toc-depth: 3
+toc-location: right
+execute:
+  code_fold: true
+  code_link: true
+  code_tools: true
+  fig-cap-location: top
+  tbl-cap-location: top
+  warning: false
+---
+
+The singleton pattern ensures there is only one instance of a class and at the same time it provides a global access
+point to that instance.
+
+![[_Another type of Singelton._ Picture by me.](https://www.flickr.com/photos/slackline/4949025595/)](https://live.staticflickr.com/4126/4949025595_b772c9e608_k.jpg)
+
+**Singletons violate the _Single Responsibility Principle_** and their use is considered poor
+practice. Further having global variables/objects that can be accessed from anywhere isn't particularly safe as content
+can be over-written at any point leading to problems. Regardless I'm on a mission to learn!
+
+Why would you use a Singleton pattern if it violates the _Single Responsibility Principle_ and is potentially unsafe?
+Well it is commonly used when a centralised point of access is require to say a database or a configuration manager.
+
+# Implementation
+
+Implementing singletons in Python is pretty straight-forward courtesy of the `__new__` method. However, because of the
+hazard of only having a single instance of the class you need to be mindful when using threads (multiple processes) so
+that there is no conflict. This is achieved using the `Lock` and `Thread` classes from the
+[`threading`](https://docs.python.org/3/library/threading.html) library.
+
+``` {.python}
+from threading import Lock, Thread
+
+class Singleton:
+    _instance = {}
+
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super().__new__(cls, *args, **kwargs)
+        return cls._instance
+
+def main():
+    s1 = Singleton()
+    s2 = Singleton()
+
+    print(s1 is s2)  # True
+
+```
+
+# Links
+
+* [Singleton - Refactoring Guru](https://refactoring.guru/design-patterns/singleton)
+* [Singleton pattern in Python: A Beginner’s Guide | by Arun Suresh Kumar | Medium](https://medium.com/@yeaske/singleton-pattern-in-python-a-beginners-guide-75e97ce75554)
+* [SQLite and SQLAlchemy - Real Python](https://realpython.com/lessons/sqlite-sqlalchemy-python-overview/)
