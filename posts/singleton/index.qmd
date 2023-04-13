@@ -55,6 +55,58 @@ def main():
 
 ```
 
+
+# Practical Example
+
+Beyond demonstrating that a second instance of the `Singleton` class isn't instantiated to the `s2` object that is a
+fairly useless example. A more practical example might be when you wish to have a connection to a database but only
+wish to have a single connection and not to create lots of new connections every time you wish to interact with the
+database.
+
+``` {.python}
+from threading import Lock, Thread
+
+import sqlite3
+
+class dbConnectSQLite3:
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls, *args, **kwargs)
+            cls._instance.connection = sqlite3.connect()
+        return cls._instance
+
+    def __init__(self, db_path: Path):
+        """Initialise the class.
+
+        Parameters
+        ----------
+        db_path: Path
+            Path to an sqlite3 database.
+        """
+        self.connection = sqlite3.connect(db_path)
+        self.cursor = self.connection.cursor()
+
+    def db_query(self, db_query: str) -> Any:
+        """Query the database.
+
+        Parameters
+        ----------
+        db_query: str
+            A valid SQL query.
+        """
+        self.cursor.execute(db_query)
+        return self.cursor.fetchall()
+
+    def add_data(self, table: str, data: str):
+        """Add data to the database."""
+
+    def create_table(self, fields: list):
+        """Create a table in the database."""
+
+```
+
 # Links
 
 * [Singleton - Refactoring Guru](https://refactoring.guru/design-patterns/singleton)
