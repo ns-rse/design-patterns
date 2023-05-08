@@ -68,42 +68,6 @@ from threading import Lock, Thread
 
 import sqlite3
 
-class dbConnectSQLite3:
-    _instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls, *args, **kwargs)
-            cls._instance.connection = sqlite3.connect()
-        return cls._instance
-
-    def __init__(self, db_path: Path):
-        """Initialise the class.
-
-        Parameters
-        ----------
-        db_path: Path
-            Path to an sqlite3 database.
-        """
-        self.connection = sqlite3.connect(db_path)
-        self.cursor = self.connection.cursor()
-
-    def db_query(self, db_query: str) -> Any:
-        """Query the database.
-
-        Parameters
-        ----------
-        db_query: str
-            A valid SQL query.
-        """
-        self.cursor.execute(db_query)
-        return self.cursor.fetchall()
-
-    def add_data(self, table: str, data: str):
-        """Add data to the database."""
-
-    def create_table(self, fields: list):
-        """Create a table in the database."""
 
 ```
 
@@ -112,3 +76,5 @@ class dbConnectSQLite3:
 * [Singleton - Refactoring Guru](https://refactoring.guru/design-patterns/singleton)
 * [Singleton pattern in Python: A Beginner’s Guide | by Arun Suresh Kumar | Medium](https://medium.com/@yeaske/singleton-pattern-in-python-a-beginners-guide-75e97ce75554)
 * [SQLite and SQLAlchemy - Real Python](https://realpython.com/lessons/sqlite-sqlalchemy-python-overview/)
+* [Python 101 - How to Work with a Database Using sqlite3 - Mouse Vs Python](https://dev.pythonlibrary.org/2021/09/30/sqlite/)
+* [Creating a singleton in Python - Stack Overflow](https://stackoverflow.com/questions/6760685/creating-a-singleton-in-python)
