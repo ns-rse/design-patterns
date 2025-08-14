@@ -1,33 +1,5 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "This is a blog about software design patterns and is a method for me to develop my understanding of how they work.\nI have written the python-design-patterns package to implement each of the factory methods I have documented here with simple pytest."
-  },
-  {
-    "objectID": "links.html",
-    "href": "links.html",
-    "title": "Links",
-    "section": "",
-    "text": "None of this is original, its my rehashing of others insights to help me understand how they work and when they are useful. In addition there are a bunch of links to my other web-sites."
-  },
-  {
-    "objectID": "links.html#resources",
-    "href": "links.html#resources",
-    "title": "Links",
-    "section": "Resources",
-    "text": "Resources\n\nRefactoring Guru - Design Patterns"
-  },
-  {
-    "objectID": "links.html#my-other-sites",
-    "href": "links.html#my-other-sites",
-    "title": "Links",
-    "section": "My Other Sites",
-    "text": "My Other Sites\n\n\n\nSite\nDescription\n\n\n\n\nns-rse\nA blog I occasionally post to.\n\n\nkimura\nA Dokuwiki site where I keep notes.\n\n\nFlickr\nPhotography (mostly landscape, climbing and cats).\n\n\nneil-snaps.co.uk\nWhere I fail to monetise my photography.\n\n\nSheffieldBoulder.uk\nAnother Dokuwiki site detailing artificial boulders around Sheffield.\n\n\nGitLab\nGit repos.\n\n\nGitHub (Personal)\nGit repos.\n\n\nGitHub (Work)\nGit repos."
-  },
-  {
     "objectID": "posts/factory-method/index.html",
     "href": "posts/factory-method/index.html",
     "title": "Factory Method",
@@ -56,11 +28,11 @@
     "text": "Extending\nWe decide we want to extend the threshold() function to allow Li’s method (skimage.filters.threshold_li()) doing so is now really simple. we don’t need to change the threshold() function itself (other than to list li as an option in the docstring), but we add an elif method == \"li\": clause to _get_threshold() that returns a Callable of a new function _li() which returns the result of using skimage.filters.threshold_li(). NB don’t forget you have to import the threshold_li method too.\nfrom skimage.filters import (\n    ...\n    threshold_li\n)\n\ndef _get_threshold(method: str) -> Callable:\n    \"\"\"Creator component which determines which filter method to use.\n\n    Parameters\n    ----------\n    data: np.ndarray\n        Numpy array representing the image to be filtered.\n    filter: str\n        Filter method from Scikit-image to apply.\n\n    Returns\n    -------\n    np.ndarray\n        Filtered array.\n    \"\"\"\n    if method == \"mean\":\n        return _mean\n    if method == \"otsu\":\n        return _otsu\n    if method == \"triangle\":\n        return _triangle\n    if method == \"yen\":\n        return _yen\n    if method == \"li\":    # New method\n        return _li\n    raise ValueError(method)\n\n\ndef _li(data: np.ndarray, **kwargs: dict) -> float:\n    \"\"\"Threshold based on Li method.\"\"\"\n    return threshold_li(data, **kwargs)\nAnd we add a parameter to the tests."
   },
   {
-    "objectID": "template/index.html",
-    "href": "template/index.html",
-    "title": "TEMPLATE",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "Links\n\nTEMPLATE - Refactoring Guru"
+    "text": "This is a blog about software design patterns and is a method for me to develop my understanding of how they work.\nI have written the python-design-patterns package to implement each of the factory methods I have documented here with simple pytest."
   },
   {
     "objectID": "index.html",
@@ -68,5 +40,33 @@
     "title": "Software Design Patterns",
     "section": "",
     "text": "Factory Method\n\n\n\n\n\n\n\npython\n\n\nfactory method\n\n\n\n\n\n\n\n\n\n\n\nMar 26, 2023\n\n\nNeil Shephard\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "links.html",
+    "href": "links.html",
+    "title": "Links",
+    "section": "",
+    "text": "None of this is original, its my rehashing of others insights to help me understand how they work and when they are useful. In addition there are a bunch of links to my other web-sites."
+  },
+  {
+    "objectID": "links.html#resources",
+    "href": "links.html#resources",
+    "title": "Links",
+    "section": "Resources",
+    "text": "Resources\n\nRefactoring Guru - Design Patterns"
+  },
+  {
+    "objectID": "links.html#my-other-sites",
+    "href": "links.html#my-other-sites",
+    "title": "Links",
+    "section": "My Other Sites",
+    "text": "My Other Sites\n\n\n\nSite\nDescription\n\n\n\n\nns-rse\nA blog I occasionally post to.\n\n\nkimura\nA Dokuwiki site where I keep notes.\n\n\nFlickr\nPhotography (mostly landscape, climbing and cats).\n\n\nneil-snaps.co.uk\nWhere I fail to monetise my photography.\n\n\nSheffieldBoulder.uk\nAnother Dokuwiki site detailing artificial boulders around Sheffield.\n\n\nGitLab\nGit repos.\n\n\nGitHub (Personal)\nGit repos.\n\n\nGitHub (Work)\nGit repos."
+  },
+  {
+    "objectID": "template/index.html",
+    "href": "template/index.html",
+    "title": "TEMPLATE",
+    "section": "",
+    "text": "Links\n\nTEMPLATE - Refactoring Guru"
   }
 ]
